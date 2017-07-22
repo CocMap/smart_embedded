@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <string.h>
-
+#include <time.h>
 
 //int CharIn(char s[], int n);
 void Calculator(float x, float y, char op);     //calculator function
@@ -21,6 +21,13 @@ void main() {
         Calculator(x,y,op);
     }
 
+    if (question == 0){
+        time_t t = time(NULL);
+        struct tm tm = *localtime(&t);
+
+        printf("now: %d-%d-%d %d:%d:%d\n", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    }
+
     //function -
     if (question == 2){
         struct StudentInfo {
@@ -33,9 +40,9 @@ void main() {
         char test_name;
 
         printf("What is your student's name?\n");
-//        scanf("%s", )
+        scanf("%s", )
 
-    }
+}
 
     if (question == 0){
         char month31[7][10] = {"Jan", "March", "May", "July", "August", "October", "February"};
@@ -64,16 +71,76 @@ void Calculator(float x, float y, char op){
 
 
 void DateOfBirth(int dd, int mm, int yyyy){
+    //get local time
+    time_t local_time = time(NULL);
+    struct tm;
+    tm = *localtime(&local_time);
+
+
+
+
+
+
+    //condition of dd
+    if (dd > 31){
+        printf("Invalid date\n");
+    }
+
+    //condition of mm
+    if (mm > 12 || mm = 0){
+        printf("Invalid month\n");
+    }
+
+    //condition of yyyy
+    if (yyyy > )
     //char s[num of strings][string length]
-    char month31[7][10] = {"Jan", "March", "May", "July", "August", "October", "February"};
-    char month30[4][10] = {"April", "June", "September", "November"};
-    char month_Feb[10] = "February";
+    char month[12][10] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November","February"};
+    char month31[7][10];
+    char month30[4][10];
+
+    for (int m = 0; m < 12; m++){
+        for
+
+    }
 
     char output_month[10];
 
-    //change mm to month
+    if (dd <= 31 && mm =  ){
+        output_month
+    }
+
+
+
+
+
+
+     = {"Jan", "March", "May", "July", "August", "October", "February"};
+    char month30[4][10] = {"April", "June", "September", "November"};
+    char month_Feb[10] = "February";
+
+
+//change mm to month
+
+
+
+
+
+
     switch(dd) {
-        case 1: output_month = 'Janua'
+        case 1: output_month = 'January';
+        case 2: output_month = 'February';
+        case 3: output_month = 'March';
+        case : output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+        case 2: output_month =
+
     }
 
     for (int i = 0; i <= 31; i++){
@@ -89,3 +156,5 @@ void DateOfBirth(int dd, int mm, int yyyy){
 
 
 }
+
+
