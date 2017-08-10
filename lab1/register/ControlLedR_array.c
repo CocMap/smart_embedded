@@ -34,8 +34,7 @@ int main(void)
 		//modify pin12~15 -> modify PMD12~PMD15 -> bit24~31 (Technical Manual)
 	
 		PC->PMD &= ~(0xFF) << 24;				//clear 8 first bits (24~31)
-		//PC->PMD |= (0x55);							//set 8 bits as 01010101 -> set output mode
-		PC->PMD |= (0x55) << 24;
+		PC->PMD |= (0x55) << 24;				//set 8 bits as 01010101 -> set output mode
 		
 		//main program 
     while(1){
@@ -43,7 +42,7 @@ int main(void)
 			
 			for (i = 12; i < 16; i++) {
 			
-				PC->DOUT ^= 1<<i;
+				PC->DOUT ^= 1<<i;		//flip bit (0 to 1, 1 to 0)
 				CLK_SysTickDelay(100000);
 			}
 		}
