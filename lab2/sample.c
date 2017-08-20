@@ -3,6 +3,7 @@
 #include "NUC100Series.h"
 #include "MCU_init.h"
 #include "SYS_init.h"
+
 #define DELAYTIME 1000000
 #define BUZZER_BIPTIME 5
 #define BUZZER_BIPDELAY 2000000
