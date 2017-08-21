@@ -8,17 +8,17 @@ void LED_flashing(uint32_t flash_time);
 
 int main(void){
     //Step 1 - Unlock protected registers
-    SYS_UnclockReg();
+    SYS_UnlockReg();
 
     //Step 2 - Enable clock source
     CLK->PWRCON |= 1 << 0;          //PWRCON - System power down control register
                                     //pin[0] = 1 -> enable XTL12M_EN - External 4~24 MHz HIGH Speed Crystal Enable 
                                     //HXT - External High frequency Crystal 12 MHz
-    while(! (CLK->STATUS & 1<<0));  //Check if the clock is stable yet before moving on
+    while(! (CLK->CLKSTATUS & 1<<0));  //Check if the clock is stable yet before moving on
 
     //Step 3 - Select the clock source
-    CLK->CLKSEL0 &= ~(0x07<<0)      //Clear all the clock selection before choose new one
-    CLk->CLKSEL0 |= (0x00<<0)       //Chose HXT
+    CLK->CLKSEL0 &= ~(0x07<<0);      //Clear all the clock selection before choose new one
+    CLK->CLKSEL0 |= (0x00<<0);       //Chose HXT
 
     //Step 4 - Divide the Clock(optional)
 
