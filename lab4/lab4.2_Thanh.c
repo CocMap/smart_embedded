@@ -10,7 +10,7 @@ int main(void){
     SYS_UnlockReg();
 
     //Step 2 - Enable Clock Source
-    CLK->PWRCON |= (0x0F) << 0;         //turn on all clock source (2 external, 2 internal)
+    CLK->PWRCON |= (1 << 0) | (1 << 1) | (1 << 2) | (1 << 3);         //turn on all clock source (2 external, 2 internal)
     while(!(CLK->CLKSTATUS & 1<<0));    //check if clock is stable yet before moving on
 
     //Step 3 - Select the clock source
@@ -26,9 +26,11 @@ int main(void){
     //
     SysTick->CTRL |= 1<<2;              //the SysTick shares same clock with CPU
     //SysTick->CTRL &= ~(1<<1);         //turn off the SysTick interrupt
-    SysTick->CTRL &= ~(1<<2);           //the SysTick has an independent clock to the clock of the CPU
+    // SysTick->CTRL &= ~(1<<1);           //the SysTick has an independent clock to the clock of the CPU
+    SysTick->CTRL |= (1<<1);            //turn ON systick interrupt
 
-    SysTick->LOAD = 49;                 //set the top value
+    SysTick->LOAD = 32768 - 1;          //set the top value -> 500mHz
+    SysTick->LOAD = 49;                 //set the top value -> 500mHz
     SysTick->VAL = 0;                   //clear the current value to 0
 
     PC->PMD |= (0x01) << 24;            //configure PC12 as output
@@ -36,7 +38,17 @@ int main(void){
 
     //--------------------MAIN LOOP--------------------
     while(1){
-        while(!(SysTick->CTRL & 1<<16));//check if the COUNTLFLAG (bit 16) is set
+        //while(!(SysTick->CTRL & 1<<16));//check if the COUNTLFLAG (bit 16) is set
         PC->DOUT ^=1 << 12;             //toggle PC12
     }
 }
+
+// void SysTick_Handler(void){
+//     PC->DOUT ^= 1 << 12;                //toggle PC12
+// }
+
+
+
+
+
+
